@@ -1,0 +1,185 @@
+代码规范  异步调用连接池  reduce comsumer java81
+ 
+redis 清空数据库 flushdb  清空所有 flushall
+redis-cli -h datanode1 -p 6380 连接命令
+
+
+
+export SPARK_MAJOR_VERSION=2
+nohup spark-submit --master yarn --deploy-mode client --executor-memory 5G --executor-cores 8 behavior-collection-1.0-SNAPSHOT-jarNam.jar >./log.txt & 
+
+jvisualvm   监控java程序运行
+
+卸载服务：redis-server --service-uninstall
+
+开启服务：redis-server --service-start
+
+停止服务：redis-server --service-stop
+
+
+nohup spark-submit --master yarn --deploy-mode cluster --executor-memory 5G --executor-cores 8 ${collection}  > collection.log &
+     
+ 
+新需求sql
+select count(*) as counts  
+FROM 2018_06 
+where
+appTags in ('游戏','视频','购物','旅行','美食')
+group by  date_histogram(field='startTime','interval'='1d','alias'='day'),
+date_histogram(field='startTime','interval'='1h','alias'='hour'),appTags,localIp
+
+
+export SPARK_MAJOR_VERSION=2
+spark-submit --master yarn --deploy-mode cluster --executor-memory 5G --executor-cores 8 behavior-collection-1.0-SNAPSHOT-jarNam.jar
+
+yarn logs -applicationId Application application_1526523979072_0004
+yarn application -kill application_1526278347622_0027
+
+
+nohup spark-submit --master yarn --deploy-mode cluster --executor-memory 5G --executor-cores 8 behavior-calculation-1.0-SNAPSHOT-jarNam.jar > caculation.log &
+
+get collection-log-2018.06.07/_search
+{ 
+   "query": {
+       "bool": {
+         "filter": {
+            "range" : {
+            "@timestamp": {
+                "gte": "2018-06-07T06:50:00.306Z",
+                "lte": "2018-12-31"
+            }
+        }
+         },
+          "must": [
+        {
+          "match": {
+            "message": "催缴"
+          }
+           
+        }
+      ]
+         
+       }
+      
+        
+        
+    }
+}
+
+当前上网情况最新dsl语句
+GET 2018_07/_search
+{
+  "size": 10000,
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "range": {
+            "startTime": {
+              "from": 1531267200000,
+              "to": 1531303200000,
+              "include_lower": true,
+              "include_upper": true,
+              "boost": 1
+            }
+          }
+        },
+        {
+           "terms" : {
+            "localIp" : [
+              "172.18.199.1",
+              "172.18.199.31",
+              "172.18.199.20",
+              "172.18.199.36",
+              "172.18.199.111",
+              "172.18.199.100",
+              "172.18.199.199",
+              "172.18.199.2",
+              "172.18.199.124",
+              "172.18.199.152"
+            ],
+            "boost" : 1.0
+          }
+        }
+      ],
+      "disable_coord": false,
+      "adjust_pure_negative": true,
+      "boost": 1
+    }
+  },
+  "aggregations": {
+    "sourceIP": {
+      "terms": {
+        "field": "localIp",
+        "size": 10000,
+        "min_doc_count": 1,
+        "shard_min_doc_count": 0,
+        "show_term_doc_count_error": false,
+        "order": [
+          {
+            "_count": "desc"
+          },
+          {
+            "_term": "asc"
+          }
+        ]
+      },
+      "aggregations": {
+        "app_tag_collection": {
+          "terms": {
+            "field": "appTags",
+            "size": 1
+          },
+          "aggregations": {
+            "startTime": {
+              "max": {
+                "field": "startTime"
+              }
+            },
+            "date": {
+              "date_histogram": {
+                "field": "startTime",
+                "interval": "10m"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+226d4e3802ae447181ed0839d1c18d9e   id 
+departmentId  3bb21abc91b14ac3bf8aab3b920e4d36  开发部
+getProjectNameList
+getWorkType
+getDepartmentList
+
+
+073908fe-0148-4cbc-b263-b4d9ce9e887d
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

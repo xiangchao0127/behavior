@@ -1,0 +1,4 @@
+192.168.0.108  localhost
+6Z8NP5i  es节点名称
+elasticsearch  cluster_name
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/customer4/_doc/_bulk?pretty&refresh" --data-binary "@accounts.json"  es批量加载数据

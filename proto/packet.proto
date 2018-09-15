@@ -1,0 +1,26 @@
+syntax = "proto2";
+package com.handge.bigdata.proto;
+message PacketData {
+    optional string ipPorto2Name = 1; //传输层协议
+    optional string srcIp = 2; //源IP
+    optional uint32 srcPort = 3; //源端口
+    optional string dstIp = 4; //目的IP
+    optional uint32 dstPort = 5; //目的端口
+    optional string proto = 6; //应用层协议
+    optional uint32 srcPktNums = 7; //源数据包个数
+    optional uint64 srcBytes = 8; //源数据流量大小
+    optional uint32 dstPktNums = 9; //目的数据包个数
+    optional uint64 dstBytes = 10; //目的数据量大小
+    optional uint32 vlan = 11; //
+    optional string host = 12; //主机名/IP
+    optional string client = 13; //SSH/SSL客户端
+    optional string server = 14; //SSH/SSL服务端
+    optional string btHash = 15; //比特流hash值
+    optional string info = 16; //其他信息
+    optional uint64 startTime = 17; //开始时间
+    optional uint64 endTIme = 18; //结束时间
+    optional string httpURL = 19; //httpURL
+    optional string httpMethod = 20; //httpMethod
+    optional string srcMac = 21; //源mac地址
+    optional string dstMac = 22; //目的mac地址
+}

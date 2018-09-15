@@ -1,0 +1,23 @@
+syntax = "proto2";
+package com.handge.bigdata.proto;
+message MiddleData {
+    optional string deviceID = 1; //mac地址
+    optional string sourceIP = 2; //源IP
+    optional string appName = 3; //应用名称
+    optional string appType = 4; //应用类别
+    optional string appProtocol = 5; //协议
+    optional string destinationIP = 6; //目的IP
+    optional uint64 upstreamFlow = 7; //上行流量
+    optional uint64 downstreamFlow = 8; //下行流量
+    optional string details = 9; //详情
+    optional uint64 startTime = 10; //访问时间
+    optional uint64 endTime = 11; //结束时间
+    optional string appTagCollection = 12; //应用标签集合
+    optional string host = 13; //域名
+    optional string httpURL = 14; //httpURL
+    optional string httpMethod = 15; //httpMethod
+    optional string client = 16; //SSH/SSL客户端
+    optional string server = 17; //SSH/SSL服务端
+    optional string isIntranet = 18; //是否内网IP
+    optional bool isnoise = 19;
+}
